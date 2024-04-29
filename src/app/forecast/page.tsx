@@ -15,43 +15,47 @@ import {
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-export default function ForecastResult({ searchParams }: { searchParams: any }) {
+interface IForecastLocationPageProps {
+    params?: any
+    searchParams: { lat: string, long: string, placeName: string, stateName: string }
+}
+let blankProps: IForecastLocationPageProps = { searchParams: { lat: "", long: "", placeName: "", stateName: "" } };
+function ForecastLocationPage({ searchParams }: IForecastLocationPageProps = blankProps) {
     let router = useRouter();
     let [dailyForecastUrl, setDailyForecastUrl] = useState("");
     let [hourlyForecastUrl, setHourlyForecastUrl] = useState("");
     let [isFetching, setIsFetching] = useState(true);
+    async function getForecastEndpoints(lat: string, long: string) {
+        let weatherMappingsEndpoint = `https://api.weather.gov/points/${lat},${long}`;
+        await fetch(weatherMappingsEndpoint)
+            .then(response => response.json())
+            .then(data => {
+                let dailyForecastUrl = (data as WeatherMappings).properties.forecast;
+                setDailyForecastUrl(dailyForecastUrl);
+                return data;
+            })
+            .then(data => {
+                let hourlyForecastUrl = (data as WeatherMappings).properties.forecastHourly;
+                setHourlyForecastUrl(hourlyForecastUrl);
+                return data;
+            })
+            .finally(() => {
+                setIsFetching(false);
+            })
+    }
     useEffect(() => {
-        function getForecastEndpoints() {
-            let weatherMappingsEndpoint = `https://api.weather.gov/points/${searchParams.lat},${searchParams.long}`;
-            fetch(weatherMappingsEndpoint)
-                .then(response => response.json())
-                .then(data => {
-                    let dailyForecastUrl = (data as WeatherMappings).properties.forecast;
-                    setDailyForecastUrl(dailyForecastUrl);
-                    return data;
-                })
-                .then(data => {
-                    let hourlyForecastUrl = (data as WeatherMappings).properties.forecastHourly;
-                    setHourlyForecastUrl(hourlyForecastUrl);
-                    return data;
-                })
-                .finally(() => {
-                    setIsFetching(false);
-                })
+        if (searchParams.lat && searchParams.long) {
+            getForecastEndpoints(searchParams.lat, searchParams.long);
         }
-        getForecastEndpoints();
     }, [searchParams.lat, searchParams.long])
-
     function onDailyForecastClick() {
         setIsFetching(true);
         router.push(`/forecast/daily?location=${searchParams.placeName + ", " + searchParams.stateName}&forecastUrl=${dailyForecastUrl}`);
     }
-
     function onHourlyForecastClick() {
         setIsFetching(true);
         router.push(`/forecast/hourly?location=${searchParams.placeName + ", " + searchParams.stateName}&forecastUrl=${hourlyForecastUrl}`);
     }
-
     return (
         <Center h={"100vh"} py={6}>
             <VStack>
@@ -112,3 +116,5 @@ export default function ForecastResult({ searchParams }: { searchParams: any }) 
         </Center>
     );
 }
+
+export default ForecastLocationPage;
