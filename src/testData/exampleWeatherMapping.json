@@ -1,0 +1,94 @@
+{
+    "@context": [
+        "https://geojson.org/geojson-ld/geojson-context.jsonld",
+        {
+            "@version": "1.1",
+            "wx": "https://api.weather.gov/ontology#",
+            "s": "https://schema.org/",
+            "geo": "http://www.opengis.net/ont/geosparql#",
+            "unit": "http://codes.wmo.int/common/unit/",
+            "@vocab": "https://api.weather.gov/ontology#",
+            "geometry": {
+                "@id": "s:GeoCoordinates",
+                "@type": "geo:wktLiteral"
+            },
+            "city": "s:addressLocality",
+            "state": "s:addressRegion",
+            "distance": {
+                "@id": "s:Distance",
+                "@type": "s:QuantitativeValue"
+            },
+            "bearing": {
+                "@type": "s:QuantitativeValue"
+            },
+            "value": {
+                "@id": "s:value"
+            },
+            "unitCode": {
+                "@id": "s:unitCode",
+                "@type": "@id"
+            },
+            "forecastOffice": {
+                "@type": "@id"
+            },
+            "forecastGridData": {
+                "@type": "@id"
+            },
+            "publicZone": {
+                "@type": "@id"
+            },
+            "county": {
+                "@type": "@id"
+            }
+        }
+    ],
+    "id": "https://api.weather.gov/points/33.5508,-88.4865",
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -88.486500000000007,
+            33.550800000000002
+        ]
+    },
+    "properties": {
+        "@id": "https://api.weather.gov/points/33.5508,-88.4865",
+        "@type": "wx:Point",
+        "cwa": "JAN",
+        "forecastOffice": "https://api.weather.gov/offices/JAN",
+        "gridId": "JAN",
+        "gridX": 136,
+        "gridY": 120,
+        "forecast": "https://api.weather.gov/gridpoints/JAN/136,120/forecast",
+        "forecastHourly": "https://api.weather.gov/gridpoints/JAN/136,120/forecast/hourly",
+        "forecastGridData": "https://api.weather.gov/gridpoints/JAN/136,120",
+        "observationStations": "https://api.weather.gov/gridpoints/JAN/136,120/stations",
+        "relativeLocation": {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -88.413551999999996,
+                    33.507964000000001
+                ]
+            },
+            "properties": {
+                "city": "Columbus",
+                "state": "MS",
+                "distance": {
+                    "unitCode": "wmoUnit:m",
+                    "value": 8270.9528392110005
+                },
+                "bearing": {
+                    "unitCode": "wmoUnit:degree_(angle)",
+                    "value": 305
+                }
+            }
+        },
+        "forecastZone": "https://api.weather.gov/zones/forecast/MSZ031",
+        "county": "https://api.weather.gov/zones/county/MSC087",
+        "fireWeatherZone": "https://api.weather.gov/zones/fire/MSZ031",
+        "timeZone": "America/Chicago",
+        "radarStation": "KGWX"
+    }
+}
