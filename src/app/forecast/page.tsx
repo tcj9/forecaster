@@ -14,12 +14,11 @@ import {
 } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-
 interface IForecastLocationPageProps {
-    params?: any
+    params: any
     searchParams: { lat: string, long: string, placeName: string, stateName: string }
 }
-let blankProps: IForecastLocationPageProps = { searchParams: { lat: "", long: "", placeName: "", stateName: "" } };
+let blankProps: IForecastLocationPageProps = { params: {}, searchParams: { lat: "", long: "", placeName: "", stateName: "" } };
 function ForecastLocationPage({ searchParams }: IForecastLocationPageProps = blankProps) {
     let router = useRouter();
     let [dailyForecastUrl, setDailyForecastUrl] = useState("");
