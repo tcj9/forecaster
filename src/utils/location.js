@@ -1,5 +1,4 @@
 import { cache } from 'react'
-
 export const getLocationDataFromZipCode = cache(async (zipCode) => {
     return await fetch(`https://api.zippopotam.us/us/${zipCode}`)
         .then(results => results.json())

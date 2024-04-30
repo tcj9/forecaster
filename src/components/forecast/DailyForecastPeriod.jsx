@@ -1,5 +1,4 @@
 import { Box, Center, Heading, Text, Stack, Image } from '@chakra-ui/react';
-
 function DailyForecastPeriod({ period }) {
     return (
         <Box
@@ -59,6 +58,4 @@ function DailyForecastPeriod({ period }) {
         </Box>
     )
 }
-
-
 export default DailyForecastPeriod;

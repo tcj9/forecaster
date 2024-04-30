@@ -1,3 +1,4 @@
+'use server'
 import { get7DayForecastFromZipCode, get12HourForecastFromZipCode } from "@/utils/forecast";
 
 export async function GET(request) {

@@ -1,10 +1,8 @@
 import { DateTime } from "luxon"
 import { Heading, List, ListItem, Stack, Text, } from '@chakra-ui/react';
-
 function HourlyForecastPeriod({ period }) {
     let startDate = DateTime.fromISO(period.startTime);
     let endDate = DateTime.fromISO(period.endTime);
-
     return (
         <Stack
             py={3}
@@ -36,5 +34,4 @@ function HourlyForecastPeriod({ period }) {
         </Stack>
     );
 };
-
 export default HourlyForecastPeriod;

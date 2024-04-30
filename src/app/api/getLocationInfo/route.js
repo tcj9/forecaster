@@ -1,3 +1,4 @@
+'use server'
 import { getLocationDataFromZipCode } from "@/utils/location"
 
 export async function GET(request) {

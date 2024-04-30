@@ -1,6 +1,5 @@
 import { cache } from 'react'
 import { getLocationDataFromZipCode } from "./location"
-
 export const get12HourForecastFromZipCode = cache(async (zipCode) => {
     let { longitude, latitude, locationName } = await getLocationDataFromZipCode(zipCode);
     let { hourlyForecastUrl } = await getForcastUrlsFromLatLong(latitude, longitude);
@@ -16,7 +15,6 @@ export const get12HourForecastFromZipCode = cache(async (zipCode) => {
         })
         .catch(err => console.error(err))
 });
-
 export const get7DayForecastFromZipCode = cache(async (zipCode) => {
     let { longitude, latitude, locationName } = await getLocationDataFromZipCode(zipCode);
     let { dailyForecastUrl } = await getForcastUrlsFromLatLong(latitude, longitude);
@@ -33,7 +31,6 @@ export const get7DayForecastFromZipCode = cache(async (zipCode) => {
         })
         .catch(err => console.error(err))
 });
-
 const getForcastUrlsFromLatLong = cache(async (lat, long) => {
     return await fetch(`https://api.weather.gov/points/${lat},${long}`)
         .then(response => response.json())

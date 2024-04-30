@@ -1,8 +1,6 @@
 import { DateTime } from "luxon"
 import { Link } from "@chakra-ui/next-js";
 import { Heading, Text, Stack, } from '@chakra-ui/react';
-
-
 function ForecastPageHeaderBar({ forecastType, locationName, locationColor, updatedOn, zipCode }) {
     return (
         <Stack
@@ -38,6 +36,4 @@ function ForecastPageHeaderBar({ forecastType, locationName, locationColor, upda
         </Stack>
     )
 }
-
-
 export default ForecastPageHeaderBar;
